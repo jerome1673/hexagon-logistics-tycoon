@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hexagon Logistics Tycoon</title>
+<meta name="description" content="Hexagon Logistics Tycoon : un jeu de gestion et de logistique sur la carte de France. Bâtis des chaînes de production, fais rouler tes camions, nourris les villes. Bientôt sur Android.">
+<link rel="icon" href="images/icone.png">
+<style>
+  :root { --fond:#071b3d; --fond2:#0a2a5c; --carte:#0e3a7d; --texte:#eef3fb; --doux:#b9c9e3; --or:#ffcc00; --bord:#2a5ea8; --rayon:18px; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin:0; background:var(--fond); color:var(--texte); font:17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  a { color:var(--or); }
+  .centre { max-width:1060px; margin:0 auto; padding:0 16px; }
+
+  header.haut { position:sticky; top:0; z-index:5; background:rgba(7,27,61,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--bord); }
+  header.haut .centre { display:flex; align-items:center; gap:12px; min-height:58px; }
+  header.haut img { width:34px; height:34px; border-radius:9px; }
+  header.haut strong { font-size:1.05rem; }
+  header.haut nav { margin-left:auto; display:flex; gap:16px; align-items:center; }
+  header.haut nav a { color:var(--doux); text-decoration:none; font-size:.95rem; }
+  header.haut nav a:hover { color:var(--or); }
+  #langue { border:1px solid var(--bord); background:transparent; color:var(--texte); border-radius:999px; padding:5px 13px; font:inherit; font-size:.9rem; cursor:pointer; }
+  #langue:hover { border-color:var(--or); color:var(--or); }
+  @media (max-width:640px) { header.haut nav a { display:none; } }
+
+  .hero { background:linear-gradient(180deg,var(--fond2),var(--fond)); padding:48px 0 40px; text-align:center; }
+  .hero img.icone { width:112px; height:112px; border-radius:26px; box-shadow:0 10px 30px rgba(0,0,0,.4); }
+  .hero h1 { font-size:clamp(2rem,6vw,3.4rem); line-height:1.1; margin:18px 0 10px; }
+  .hero h1 span { color:var(--or); }
+  .hero p.accroche { max-width:640px; margin:0 auto 22px; color:var(--doux); font-size:1.15rem; }
+  .bientot { display:inline-block; background:var(--or); color:#1a1a1a; font-weight:700; padding:12px 24px; border-radius:999px; }
+  .sous-bientot { display:block; margin-top:10px; color:var(--doux); font-size:.92rem; }
+  .bandeau { width:100%; max-width:760px; border-radius:var(--rayon); margin:30px auto 0; display:block; box-shadow:0 12px 36px rgba(0,0,0,.45); }
+
+  section { padding:44px 0; }
+  h2 { font-size:clamp(1.5rem,4vw,2.1rem); margin:0 0 8px; }
+  h2 + p.intro { margin:0 0 26px; color:var(--doux); max-width:680px; }
+  .grille { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+  .carte { background:var(--carte); border:1px solid var(--bord); border-radius:var(--rayon); padding:20px; }
+  .carte h3 { margin:0 0 6px; font-size:1.1rem; color:var(--or); }
+  .carte p { margin:0; color:var(--texte); font-size:.97rem; }
+
+  .chiffres { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); text-align:center; }
+  .chiffres div { background:var(--fond2); border:1px solid var(--bord); border-radius:var(--rayon); padding:16px 8px; }
+  .chiffres b { display:block; font-size:2rem; color:var(--or); line-height:1.1; }
+  .chiffres span { color:var(--doux); font-size:.9rem; }
+
+  .captures { display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); }
+  .captures figure { margin:0; }
+  .captures img { width:100%; height:auto; border-radius:22px; border:2px solid var(--bord); display:block; background:var(--fond2); }
+  .captures figcaption { text-align:center; color:var(--doux); font-size:.9rem; margin-top:8px; }
+
+  .versions { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+  .versions .carte ul { margin:8px 0 0; padding-left:20px; }
+  .versions .carte li { margin:4px 0; font-size:.97rem; }
+  .prix { color:var(--doux); font-size:.95rem; margin-top:14px; }
+
+  .credits { color:var(--doux); font-size:.93rem; }
+  footer { border-top:1px solid var(--bord); padding:28px 0 40px; color:var(--doux); font-size:.93rem; text-align:center; }
+  footer a { margin:0 8px; }
+
+  [lang="fr"] .en, [lang="en"] .fr { display:none !important; }
+</style>
+</head>
+<body>
+
+<header class="haut">
+  <div class="centre">
+    <img src="images/icone.png" alt="">
+    <strong>Hexagon Logistics Tycoon</strong>
+    <nav>
+      <a href="#jeu"><span class="fr">Le jeu</span><span class="en">The game</span></a>
+      <a href="#captures"><span class="fr">Captures</span><span class="en">Screenshots</span></a>
+      <a href="#versions"><span class="fr">Versions</span><span class="en">Versions</span></a>
+      <button id="langue" type="button" aria-label="Changer de langue / Change language"><span class="fr">English</span><span class="en">Français</span></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="centre">
+      <img class="icone" src="images/icone.png" alt="Hexagon Logistics Tycoon">
+      <h1>Hexagon <span>Logistics</span> Tycoon</h1>
+      <p class="accroche fr">Bâtis des chaînes logistiques, fais rouler tes camions, tes trains, tes bateaux et tes avions, et nourris les villes de France.</p>
+      <p class="accroche en">Build supply chains, run your trucks, trains, ships and planes, and feed the cities of France.</p>
+      <span class="bientot fr">Bientôt sur Android</span>
+      <span class="bientot en">Coming soon on Android</span>
+      <span class="sous-bientot fr">Jeu de gestion et de logistique, sans publicité, sans compte.</span>
+      <span class="sous-bientot en">A management and logistics game: no ads, no account.</span>
+      <img class="bandeau fr" src="images/bandeau.jpg" alt="Hexagon Logistics Tycoon">
+    </div>
+  </div>
+
+  <section id="jeu">
+    <div class="centre">
+      <h2 class="fr">Un jeu de logistique sur la vraie carte de France</h2>
+      <h2 class="en">A logistics game on the real map of France</h2>
+      <p class="intro fr">Les villes ont faim, soif et besoin de tout : pain, meubles, fruits et légumes, puis matériaux, boissons, vêtements, électronique, médicaments et batteries. À toi d'organiser la production et les livraisons.</p>
+      <p class="intro en">Cities are hungry, thirsty and need everything: bread, furniture, fruit and vegetables, then building materials, drinks, clothes, electronics, medicines and batteries. It's up to you to organise production and deliveries.</p>
+      <div class="grille">
+        <div class="carte">
+          <h3 class="fr">Construis tes chaînes</h3><h3 class="en">Build your chains</h3>
+          <p class="fr">Fermes, moulins, boulangeries, scieries, usines, mines, entrepôts : chaque bâtiment a sa cadence et ses besoins. Le maillon le plus lent limite toute la chaîne.</p>
+          <p class="en">Farms, mills, bakeries, sawmills, factories, mines, warehouses: each building has its own pace and needs. The slowest link limits the whole chain.</p>
+        </div>
+        <div class="carte">
+          <h3 class="fr">Fais rouler tes véhicules</h3><h3 class="en">Keep your vehicles moving</h3>
+          <p class="fr">Tes camions chargent, roulent sur les vraies routes, livrent et reviennent seuls. Plus tard : trains, bateaux et avions.</p>
+          <p class="en">Your trucks load, drive on real roads, deliver and come back on their own. Later: trains, ships and planes.</p>
+        </div>
+        <div class="carte">
+          <h3 class="fr">Fais grandir les villes</h3><h3 class="en">Make cities grow</h3>
+          <p class="fr">Une ville dont la demande est couverte monte de niveau, et ses demandes se diversifient. Tu choisis librement quoi produire.</p>
+          <p class="en">A city whose demand is met moves up a level, and its demands diversify. You freely choose what to produce.</p>
+        </div>
+        <div class="carte">
+          <h3 class="fr">Un jeu qui continue sans toi</h3><h3 class="en">A game that carries on without you</h3>
+          <p class="fr">Pendant ton absence, la simulation continue (jusqu'à 48 h de jeu). Tu peux aussi accélérer le temps.</p>
+          <p class="en">While you are away, the simulation carries on (up to 48 hours of game time). You can also speed time up.</p>
+        </div>
+        <div class="carte">
+          <h3 class="fr">Recherche et partenaires</h3><h3 class="en">Research and partners</h3>
+          <p class="fr">Des technologies à débloquer, des objectifs, et des partenaires qui développent une ville pour toi.</p>
+          <p class="en">Technologies to unlock, goals to reach, and partners who develop a city for you.</p>
+        </div>
+        <div class="carte">
+          <h3 class="fr">Un tutoriel pour démarrer</h3><h3 class="en">A tutorial to get started</h3>
+          <p class="fr">Une première chaîne de pain, pas à pas, puis ta vraie partie démarre de zéro. Disponible en français, anglais et allemand.</p>
+          <p class="en">A first bread chain, step by step, then your real game starts from scratch. Available in French, English and German.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="centre">
+      <div class="chiffres">
+        <div><b>149</b><span class="fr">villes</span><span class="en">cities</span></div>
+        <div><b>5</b><span class="fr">niveaux de ville</span><span class="en">city levels</span></div>
+        <div><b>92</b><span class="fr">types de bâtiments</span><span class="en">building types</span></div>
+        <div><b>23</b><span class="fr">véhicules</span><span class="en">vehicles</span></div>
+        <div><b>88</b><span class="fr">technologies</span><span class="en">technologies</span></div>
+        <div><b>90</b><span class="fr">biens à produire</span><span class="en">goods to produce</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="captures">
+    <div class="centre">
+      <h2 class="fr">Captures d'écran</h2><h2 class="en">Screenshots</h2>
+      <p class="intro fr">Le jeu sur téléphone : la carte de France, un bâtiment, une ville, un trajet.</p>
+      <p class="intro en">The game on a phone: the map of France, a building, a city, a route.</p>
+      <div class="captures">
+        <figure><img src="images/carte.jpg" alt="La carte de France" loading="lazy"><figcaption class="fr">La carte</figcaption><figcaption class="en">The map</figcaption></figure>
+        <figure><img src="images/batiment.jpg" alt="Un moulin" loading="lazy"><figcaption class="fr">Un bâtiment</figcaption><figcaption class="en">A building</figcaption></figure>
+        <figure><img src="images/ville.jpg" alt="Une ville" loading="lazy"><figcaption class="fr">Une ville</figcaption><figcaption class="en">A city</figcaption></figure>
+        <figure><img src="images/trajet.jpg" alt="Un trajet" loading="lazy"><figcaption class="fr">Un trajet</figcaption><figcaption class="en">A route</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="versions">
+    <div class="centre">
+      <h2 class="fr">Version gratuite et version complète</h2><h2 class="en">Free version and full version</h2>
+      <p class="intro fr">La version complète s'achète en une seule fois, sans abonnement.</p>
+      <p class="intro en">The full version is a one-time purchase, with no subscription.</p>
+      <div class="versions">
+        <div class="carte">
+          <h3 class="fr">Gratuite</h3><h3 class="en">Free</h3>
+          <ul class="fr"><li>Le niveau 1 des villes</li><li>Le centre de recherche et ses technologies de départ</li><li>La vitesse ×2</li><li>Les objectifs</li></ul>
+          <ul class="en"><li>City level 1</li><li>The research centre with its starting technologies</li><li>×2 speed</li><li>Goals</li></ul>
+        </div>
+        <div class="carte">
+          <h3 class="fr">Complète</h3><h3 class="en">Full</h3>
+          <ul class="fr"><li>Les niveaux 2 à 5 des villes et toutes les technologies</li><li>Les bâtiments uniques et le budget de l'État</li><li>Les partenaires</li><li>Les trains, les bateaux et les avions</li><li>La mer des Pyrénées, les événements aléatoires et les fêtes des villes</li></ul>
+          <ul class="en"><li>City levels 2 to 5 and all technologies</li><li>Unique buildings and the State budget</li><li>Partners</li><li>Trains, ships and planes</li><li>The Pyrenees sea, random events and city festivals</li></ul>
+        </div>
+      </div>
+      <p class="prix fr">Sans publicité. Sans compte. Sans collecte de données : tes parties restent sur ton téléphone.</p>
+      <p class="prix en">No ads. No account. No data collection: your games stay on your phone.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="centre credits">
+      <h2 class="fr">Crédits</h2><h2 class="en">Credits</h2>
+      <p class="fr">La carte est dessinée par le jeu à partir de données © les contributeurs d'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (licence ODbL) et de l'INSEE. Les données dérivées utilisées par le jeu sont <a href="https://github.com/jerome1673/donnees-osm-odbl">publiées ici</a> sous licence ODbL.</p>
+      <p class="en">The map is drawn by the game from data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors (ODbL licence) and INSEE. The derived data used by the game is <a href="https://github.com/jerome1673/donnees-osm-odbl">published here</a> under the ODbL licence.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="centre">
+    <p>
+      <a href="https://jerome1673.github.io/confidentialite-hexagon/"><span class="fr">Politique de confidentialité</span><span class="en">Privacy policy</span></a>
+      <a href="mailto:jdwcreation@outlook.fr">jdwcreation@outlook.fr</a>
+    </p>
+    <p>© Hexagon Logistics Tycoon</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var html = document.documentElement, cle = 'hexagon-site-langue';
+    function appliquer(l) { html.setAttribute('lang', l); document.title = 'Hexagon Logistics Tycoon'; }
+    var choix = null;
+    try { choix = localStorage.getItem(cle); } catch (e) {}
+    if (choix !== 'fr' && choix !== 'en') choix = (navigator.language || 'fr').slice(0, 2) === 'fr' ? 'fr' : 'en';
+    appliquer(choix);
+    document.getElementById('langue').addEventListener('click', function () {
+      var l = html.getAttribute('lang') === 'fr' ? 'en' : 'fr';
+      appliquer(l);
+      try { localStorage.setItem(cle, l); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
