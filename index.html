@@ -47,6 +47,9 @@
   .chiffres b { display:block; font-size:2rem; color:var(--or); line-height:1.1; }
   .chiffres span { color:var(--doux); font-size:.9rem; }
 
+  .video { max-width:340px; margin:0 auto; aspect-ratio:9/16; border-radius:22px; overflow:hidden; border:2px solid var(--bord); background:var(--fond2); box-shadow:0 12px 36px rgba(0,0,0,.45); }
+  .video iframe { width:100%; height:100%; border:0; display:block; }
+  .lien-video { text-align:center; margin-top:12px; font-size:.93rem; color:var(--doux); }
   .captures { display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); }
   .captures figure { margin:0; }
   .captures img { width:100%; height:auto; border-radius:22px; border:2px solid var(--bord); display:block; background:var(--fond2); }
@@ -145,6 +148,18 @@
         <div><b>88</b><span class="fr">technologies</span><span class="en">technologies</span></div>
         <div><b>90</b><span class="fr">biens à produire</span><span class="en">goods to produce</span></div>
       </div>
+    </div>
+  </section>
+
+  <section id="video">
+    <div class="centre">
+      <h2 class="fr">La vidéo de présentation</h2><h2 class="en">The presentation video</h2>
+      <p class="intro fr">Le jeu en images. La vidéo est en anglais.</p>
+      <p class="intro en">The game in pictures.</p>
+      <div class="video">
+        <iframe src="https://www.youtube-nocookie.com/embed/IGUIXHTf6eQ" title="Hexagon Logistics Tycoon" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <p class="lien-video"><a href="https://www.youtube.com/shorts/IGUIXHTf6eQ"><span class="fr">Voir sur YouTube</span><span class="en">Watch on YouTube</span></a></p>
     </div>
   </section>
 
