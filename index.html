@@ -217,6 +217,7 @@
     <p>
       <a href="https://www.facebook.com/share/19oHjNwFPr/" rel="noopener">Facebook</a>
     </p>
+    <p id="visites" hidden><span class="fr">Visites du site : <strong id="nb-visites"></strong></span><span class="en">Site visits: <strong id="nb-visites-en"></strong></span></p>
     <p>© Hexagon Logistics Tycoon</p>
   </div>
 </footer>
@@ -234,6 +235,19 @@
       appliquer(l);
       try { localStorage.setItem(cle, l); } catch (e) {}
     });
+  })();
+</script>
+<script>
+  // compteur de visites (GoatCounter) : reste caché si le service ne répond pas
+  (function () {
+    try {
+      fetch('https://hexagon-logistics.goatcounter.com/counter/TOTAL.json').then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+        if (!d || !d.count) return;
+        document.getElementById('nb-visites').textContent = d.count;
+        document.getElementById('nb-visites-en').textContent = d.count;
+        document.getElementById('visites').hidden = false;
+      }).catch(function () {});
+    } catch (e) {}
   })();
 </script>
 <script data-goatcounter="https://hexagon-logistics.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
