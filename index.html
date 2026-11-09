@@ -69,6 +69,13 @@
   .prix { color:var(--doux); font-size:.95rem; margin-top:14px; }
 
   .credits { color:var(--doux); font-size:.93rem; }
+  #communaute { padding:30px 0 8px; text-align:center; }
+  #communaute h2 { font-size:1.3rem; margin:0 0 6px; }
+  #communaute p.intro-reseaux { color:var(--doux); margin:0 0 16px; }
+  #communaute .liens { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
+  #communaute .liens a { display:inline-block; padding:10px 22px; border-radius:999px; border:1px solid var(--or); color:var(--or); font-weight:700; text-decoration:none; }
+  #communaute .liens a:hover { background:rgba(255,200,0,.12); }
+  #communaute .liens a.principal { background:var(--or); color:#1a1a1a; }
   footer { border-top:1px solid var(--bord); padding:28px 0 40px; color:var(--doux); font-size:.93rem; text-align:center; }
   footer a { margin:0 8px; }
 
@@ -82,6 +89,7 @@
     <img src="images/icone.png" alt="">
     <strong>Hexagon Logistics Tycoon</strong>
     <nav>
+      <a href="#communaute"><span class="fr">Communauté</span><span class="en">Community</span></a>
       <a href="#jeu"><span class="fr">Le jeu</span><span class="en">The game</span></a>
       <a href="#captures"><span class="fr">Captures</span><span class="en">Screenshots</span></a>
       <a href="#versions"><span class="fr">Versions</span><span class="en">Versions</span></a>
@@ -132,6 +140,20 @@
       <img class="bandeau fr" src="images/bandeau.jpg" alt="Hexagon Logistics Tycoon">
     </div>
   </div>
+
+  <section id="communaute">
+    <div class="centre">
+      <h2 class="fr">Rejoignez la communauté</h2>
+      <h2 class="en">Join the community</h2>
+      <p class="intro-reseaux fr">Posez vos questions, donnez votre avis et suivez les nouveautés du jeu.</p>
+      <p class="intro-reseaux en">Ask questions, share your feedback and follow the game's news.</p>
+      <div class="liens">
+        <a class="principal" href="https://discord.gg/Sd9yrNzEk" rel="noopener">Discord</a>
+        <a href="https://www.facebook.com/share/19oHjNwFPr/" rel="noopener">Facebook</a>
+        <a href="https://vibetoplist.com/listing/hexagon-logistics-tycoon" rel="noopener">Vibe Top List</a>
+      </div>
+    </div>
+  </section>
 
   <section id="jeu">
     <div class="centre">
@@ -249,10 +271,6 @@
     <p>
       <a href="https://jerome1673.github.io/confidentialite-hexagon/"><span class="fr">Politique de confidentialité</span><span class="en">Privacy policy</span></a>
       <a href="mailto:jdwcreation@outlook.fr">jdwcreation@outlook.fr</a>
-    </p>
-    <p>
-      <a href="https://www.facebook.com/share/19oHjNwFPr/" rel="noopener">Facebook</a>
-      <a href="https://vibetoplist.com/listing/hexagon-logistics-tycoon" rel="noopener">Vibe Top List</a>
     </p>
     <p id="visites" hidden><span class="fr">Visites du site : <strong id="nb-visites"></strong></span><span class="en">Site visits: <strong id="nb-visites-en"></strong></span></p>
     <p>© Hexagon Logistics Tycoon</p>
