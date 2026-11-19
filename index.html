@@ -1,295 +1,114 @@
 <!doctype html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hexagon Logistics Tycoon</title>
-<meta name="description" content="Hexagon Logistics Tycoon : un jeu de gestion et de logistique sur la carte de France. Bâtis des chaînes de production, fais rouler tes camions, nourris les villes. Bientôt sur Android.">
+<meta name="description" content="Hexagon Logistics Tycoon : un jeu de gestion et de logistique sur la carte de France. Bâtis des chaînes de production, fais rouler tes camions, nourris les villes. Sur Android.">
 <link rel="icon" href="images/icone.png">
 <style>
-  :root { --fond:#071b3d; --fond2:#0a2a5c; --carte:#0e3a7d; --texte:#eef3fb; --doux:#b9c9e3; --or:#ffcc00; --bord:#2a5ea8; --rayon:18px; }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin:0; background:var(--fond); color:var(--texte); font:17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  a { color:var(--or); }
-  .centre { max-width:1060px; margin:0 auto; padding:0 16px; }
+:root{--fond:#061631;--fond2:#0a2a5c;--carte:#0e3a7d;--bord:#2a5ea8;--or:#ffcc00;--texte:#eef3fb;--doux:#b9c9e3}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#133f86 0,transparent 60%),var(--fond);color:var(--texte);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--or)}.w{max-width:1120px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:9;background:rgba(6,22,49,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(42,94,168,.5)}
+header .w{display:flex;align-items:center;gap:12px;min-height:62px}
+header img{width:36px;height:36px;border-radius:10px}header b{font-size:1.05rem}
+header nav{margin-left:auto;display:flex;gap:20px;align-items:center}header nav a{color:var(--doux);text-decoration:none;font-size:.95rem}
+.btn{display:inline-block;background:var(--or);color:#1a1a1a;font-weight:800;padding:13px 26px;border-radius:999px;text-decoration:none;box-shadow:0 8px 24px rgba(255,204,0,.28)}
+.btn.petit{padding:8px 18px;font-size:.92rem}.btn.vide{background:transparent;color:var(--or);border:1.5px solid var(--or);box-shadow:none}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:70px 0 50px}
+.pastille{display:inline-block;border:1px solid var(--or);color:var(--or);padding:4px 14px;border-radius:999px;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase}
+h1 b{font-weight:inherit}h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.04;margin:16px 0 14px;letter-spacing:-.02em}h1 .mot{color:var(--or)}
+.accroche{font-size:1.2rem;color:var(--doux);max-width:560px}.cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 10px}
+.sous{color:var(--doux);font-size:.92rem}
+.tel{position:relative;justify-self:center;width:min(300px,70vw)}
+.tel:before{content:"";position:absolute;inset:-30px;background:radial-gradient(closest-side,rgba(255,204,0,.28),transparent);filter:blur(10px)}
+.tel img{position:relative;width:100%;border-radius:34px;border:8px solid #0b1a38;box-shadow:0 30px 70px rgba(0,0,0,.6);transform:rotate(3deg)}
+.tel .petit2{position:absolute;width:46%;left:-24%;bottom:-6%;border-radius:24px;border:6px solid #0b1a38;box-shadow:0 20px 50px rgba(0,0,0,.55);transform:rotate(-6deg)}
+.bande{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:10px 0 60px}
+.bande div{background:rgba(10,42,92,.7);border:1px solid var(--bord);border-radius:16px;padding:14px 6px;text-align:center}
+.bande b{display:block;font-size:1.9rem;color:var(--or);line-height:1.1}.bande span{color:var(--doux);font-size:.85rem}
+h2{font-size:clamp(1.6rem,4vw,2.3rem);margin:0 0 10px;letter-spacing:-.01em}.intro{color:var(--doux);max-width:640px;margin:0 0 28px}
+section{padding:46px 0}
+.grille{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+.carte{background:linear-gradient(180deg,rgba(14,58,125,.9),rgba(10,42,92,.9));border:1px solid var(--bord);border-radius:20px;padding:22px}
+.carte .ic{width:44px;height:44px;border-radius:12px;background:rgba(255,204,0,.14);display:grid;place-items:center;font-size:1.4rem;margin-bottom:10px}
+.carte h3{margin:0 0 6px;font-size:1.1rem;color:var(--or)}.carte p{margin:0;font-size:.96rem}
+.defile{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 18px}
+.defile figure{margin:0;flex:0 0 220px;scroll-snap-align:start}.defile img{width:100%;border-radius:26px;border:6px solid #0b1a38;box-shadow:0 14px 36px rgba(0,0,0,.5);display:block}
+.defile figcaption{text-align:center;color:var(--doux);font-size:.9rem;margin-top:8px}
+.etapes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:e}
+.etape{position:relative;background:rgba(255,204,0,.06);border:1px solid rgba(255,204,0,.6);border-radius:20px;padding:26px 20px 20px}
+.etape:before{counter-increment:e;content:counter(e);position:absolute;top:-18px;left:20px;width:38px;height:38px;border-radius:50%;background:var(--or);color:#1a1a1a;font-weight:900;display:grid;place-items:center}
+.etape h3{margin:6px 0 6px;font-size:1.1rem}.etape p{margin:0 0 14px;color:var(--doux);font-size:.95rem}
+.nouv{background:linear-gradient(135deg,#0e3a7d,#0a2a5c);border:1px solid var(--bord);border-radius:24px;padding:30px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start}
+.nouv .v{background:var(--or);color:#1a1a1a;border-radius:18px;padding:14px 18px;text-align:center;font-weight:800}.nouv .v small{display:block;font-weight:600;opacity:.75}
+.nouv p{margin:0;color:var(--texte)}
+.comm{display:flex;gap:12px;flex-wrap:wrap}
+footer{border-top:1px solid rgba(42,94,168,.5);padding:30px 0 44px;color:var(--doux);text-align:center;font-size:.93rem}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding-top:36px}.tel{order:-1}.bande{grid-template-columns:repeat(3,1fr)}.grille,.etapes{grid-template-columns:1fr}.nouv{grid-template-columns:1fr}header nav a:not(.btn){display:none}}
 
-  header.haut { position:sticky; top:0; z-index:5; background:rgba(7,27,61,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--bord); }
-  header.haut .centre { display:flex; align-items:center; gap:12px; min-height:58px; }
-  header.haut img { width:34px; height:34px; border-radius:9px; }
-  header.haut strong { font-size:1.05rem; }
-  header.haut nav { margin-left:auto; display:flex; gap:16px; align-items:center; }
-  header.haut nav a { color:var(--doux); text-decoration:none; font-size:.95rem; }
-  header.haut nav a:hover { color:var(--or); }
-  #langue { border:1px solid var(--bord); background:transparent; color:var(--texte); border-radius:999px; padding:5px 13px; font:inherit; font-size:.9rem; cursor:pointer; }
-  #langue:hover { border-color:var(--or); color:var(--or); }
-  @media (max-width:640px) { header.haut nav a { display:none; } }
-
-  .hero { background:linear-gradient(180deg,var(--fond2),var(--fond)); padding:48px 0 40px; text-align:center; }
-  .hero img.icone { width:112px; height:112px; border-radius:26px; box-shadow:0 10px 30px rgba(0,0,0,.4); }
-  .hero h1 { font-size:clamp(2rem,6vw,3.4rem); line-height:1.1; margin:18px 0 10px; }
-  .hero h1 span { color:var(--or); }
-  .hero p.accroche { max-width:640px; margin:0 auto 22px; color:var(--doux); font-size:1.15rem; }
-  .bientot { display:inline-block; background:var(--or); color:#1a1a1a; font-weight:700; padding:12px 24px; border-radius:999px; }
-  .sous-bientot { display:block; margin-top:10px; color:var(--doux); font-size:.92rem; }
-  .testeurs { max-width:640px; margin:26px auto 0; padding:20px 22px; border:1px solid var(--or); border-radius:var(--rayon); background:rgba(255,200,0,.07); text-align:left; }
-  .testeurs h2 { font-size:1.25rem; margin:0 0 8px; color:var(--or); }
-  .testeurs p { margin:0 0 14px; color:var(--doux); }
-  .testeurs .gratuit { margin-top:22px; padding-top:16px; border-top:1px solid rgba(255,200,0,.35); text-align:left; }
-  .testeurs .gratuit h3 { font-size:1.05rem; margin:0 0 8px; color:var(--or); }
-  .testeurs .gratuit p { margin:0 0 10px; font-size:.96rem; }
-  .testeurs p.etape { margin:18px 0 8px; font-weight:600; }
-  .testeurs a.bouton { display:inline-block; background:var(--or); color:#1a1a1a; font-weight:700; padding:10px 22px; border-radius:999px; text-decoration:none; }
-  .bandeau { width:100%; max-width:760px; border-radius:var(--rayon); margin:30px auto 0; display:block; box-shadow:0 12px 36px rgba(0,0,0,.45); }
-
-  section { padding:44px 0; }
-  h2 { font-size:clamp(1.5rem,4vw,2.1rem); margin:0 0 8px; }
-  h2 + p.intro { margin:0 0 26px; color:var(--doux); max-width:680px; }
-  .grille { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
-  .carte { background:var(--carte); border:1px solid var(--bord); border-radius:var(--rayon); padding:20px; }
-  .carte h3 { margin:0 0 6px; font-size:1.1rem; color:var(--or); }
-  .carte p { margin:0; color:var(--texte); font-size:.97rem; }
-
-  .chiffres { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); text-align:center; }
-  .chiffres div { background:var(--fond2); border:1px solid var(--bord); border-radius:var(--rayon); padding:16px 8px; }
-  .chiffres b { display:block; font-size:2rem; color:var(--or); line-height:1.1; }
-  .chiffres span { color:var(--doux); font-size:.9rem; }
-
-  .video { max-width:340px; margin:0 auto; aspect-ratio:9/16; border-radius:22px; overflow:hidden; border:2px solid var(--bord); background:var(--fond2); box-shadow:0 12px 36px rgba(0,0,0,.45); }
-  .video iframe { width:100%; height:100%; border:0; display:block; }
-  .lien-video { text-align:center; margin-top:12px; font-size:.93rem; color:var(--doux); }
-  .captures { display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); }
-  .captures figure { margin:0; }
-  .captures img { width:100%; height:auto; border-radius:22px; border:2px solid var(--bord); display:block; background:var(--fond2); }
-  .captures figcaption { text-align:center; color:var(--doux); font-size:.9rem; margin-top:8px; }
-
-  .versions { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
-  .versions .carte ul { margin:8px 0 0; padding-left:20px; }
-  .versions .carte li { margin:4px 0; font-size:.97rem; }
-  .prix { color:var(--doux); font-size:.95rem; margin-top:14px; }
-
-  .credits { color:var(--doux); font-size:.93rem; }
-  #communaute { padding:30px 0 8px; text-align:center; }
-  #communaute h2 { font-size:1.3rem; margin:0 0 6px; }
-  #communaute p.intro-reseaux { color:var(--doux); margin:0 0 16px; }
-  #communaute .liens { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
-  #communaute .liens a { display:inline-block; padding:10px 22px; border-radius:999px; border:1px solid var(--or); color:var(--or); font-weight:700; text-decoration:none; }
-  #communaute .liens a:hover { background:rgba(255,200,0,.12); }
-  #communaute .liens a.principal { background:var(--or); color:#1a1a1a; }
-  footer { border-top:1px solid var(--bord); padding:28px 0 40px; color:var(--doux); font-size:.93rem; text-align:center; }
-  footer a { margin:0 8px; }
-
-  [lang="fr"] .en, [lang="en"] .fr { display:none !important; }
-</style>
-</head>
-<body>
-
-<header class="haut">
-  <div class="centre">
-    <img src="images/icone.png" alt="">
-    <strong>Hexagon Logistics Tycoon</strong>
-    <nav>
-      <a href="#communaute"><span class="fr">Communauté</span><span class="en">Community</span></a>
-      <a href="#nouveautes"><span class="fr">Nouveautés</span><span class="en">What's new</span></a>
-      <a href="#jeu"><span class="fr">Le jeu</span><span class="en">The game</span></a>
-      <a href="#captures"><span class="fr">Captures</span><span class="en">Screenshots</span></a>
-      <a href="#versions"><span class="fr">Versions</span><span class="en">Versions</span></a>
-      <button id="langue" type="button" aria-label="Changer de langue / Change language"><span class="fr">English</span><span class="en">Français</span></button>
-    </nav>
-  </div>
-</header>
-
+#langue{border:1px solid var(--bord);background:transparent;color:var(--texte);border-radius:999px;padding:6px 14px;font:inherit;font-size:.88rem;cursor:pointer}#langue:hover{border-color:var(--or);color:var(--or)}
+.video{max-width:340px;margin:0 auto;aspect-ratio:9/16;border-radius:26px;overflow:hidden;border:6px solid #0b1a38;background:var(--fond2);box-shadow:0 20px 50px rgba(0,0,0,.55)}.video iframe{width:100%;height:100%;border:0;display:block}
+.lien-video{text-align:center;margin-top:12px;font-size:.93rem;color:var(--doux)}
+.versions{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.versions ul{margin:8px 0 0;padding-left:20px}.versions li{margin:4px 0;font-size:.97rem}
+.prix{color:var(--doux);font-size:.95rem;margin-top:16px}
+.gratuit{margin-top:22px;padding:18px 22px;border:1px solid rgba(255,204,0,.5);border-radius:18px;background:rgba(255,204,0,.05)}.gratuit h3{margin:0 0 8px;color:var(--or);font-size:1.05rem}.gratuit p{margin:0 0 10px;color:var(--doux);font-size:.96rem}.gratuit p:last-child{margin:0}
+.credits{color:var(--doux);font-size:.93rem}.credits h2{font-size:1.2rem}
+[lang="fr"] .en,[lang="en"] .fr{display:none !important}
+@media(max-width:860px){.versions{grid-template-columns:1fr}}
+</style></head><body>
+<header><div class="w"><img src="images/icone.png" alt=""><b>Hexagon Logistics Tycoon</b>
+<nav><a href="#jeu"><span class="fr">Le jeu</span><span class="en">The game</span></a><a href="#captures"><span class="fr">Captures</span><span class="en">Screenshots</span></a><a href="#nouveautes"><span class="fr">Nouveautés</span><span class="en">What's new</span></a><a href="#jouer"><span class="fr">Tester</span><span class="en">Test</span></a><button id="langue" type="button" aria-label="Changer de langue / Change language"><span class="fr">English</span><span class="en">Français</span></button></nav></div></header>
 <main>
-  <div class="hero">
-    <div class="centre">
-      <img class="icone" src="images/icone.png" alt="Hexagon Logistics Tycoon">
-      <h1>Hexagon <span>Logistics</span> Tycoon</h1>
-      <p class="accroche fr">Bâtis des chaînes logistiques, fais rouler tes camions, tes trains, tes bateaux et tes avions, et nourris les villes de France.</p>
-      <p class="accroche en">Build supply chains, run your trucks, trains, ships and planes, and feed the cities of France.</p>
-      <span class="bientot fr">Bientôt sur Android</span>
-      <span class="bientot en">Coming soon on Android</span>
-      <span class="sous-bientot fr">Jeu de gestion et de logistique, sans publicité, sans compte.</span>
-      <span class="sous-bientot en">A management and logistics game: no ads, no account.</span>
-      <div class="testeurs">
-        <h2 class="fr">Nous cherchons des testeurs sur Android !</h2>
-        <h2 class="en">We are looking for Android testers!</h2>
-        <p class="fr">Le jeu arrive bientôt sur Google Play. Pour valider la sortie, Google demande un test de 14 jours avec au moins 12 testeurs. Il vous faut un téléphone Android et une adresse Gmail : suivez les trois étapes ci-dessous : vous aurez accès au test et au jeu complet gratuitement.</p>
-        <p class="en">The game is coming soon to Google Play. To approve the release, Google requires a 14-day test with at least 12 testers. You need an Android phone and a Gmail address: follow the three steps below: you get access to the test and the full game for free.</p>
-        <p class="fr etape">Étape 1 : rejoignez le groupe de testeurs (avec votre adresse Gmail). Votre adresse est ajoutée à la main à la liste des testeurs, une fois par jour, après 19 h (heure de France).</p>
-        <p class="en etape">Step 1: join the testers group (with your Gmail address). Your address is added by hand to the testers list, once a day, after 7 pm (French time).</p>
-        <a class="bouton fr" href="https://groups.google.com/g/hexagon-logistics-tycoon" rel="noopener">1. Rejoindre le groupe de testeurs</a>
-        <a class="bouton en" href="https://groups.google.com/g/hexagon-logistics-tycoon" rel="noopener">1. Join the testers group</a>
-        <p class="fr etape">Étape 2 : après 19 h (heure de France), ouvrez ce lien sur votre téléphone Android, avec la même adresse, et appuyez sur « Devenir testeur ». Avant, le lien affiche « App not available » : c'est normal, il faut patienter.</p>
-        <p class="en etape">Step 2: after 7 pm (French time), open this link on your Android phone, with the same address, and tap “Become a tester”. Before that, the link shows “App not available”: this is normal, please be patient.</p>
-        <a class="bouton fr" href="https://play.google.com/apps/testing/fr.hexagonlogistics.tycoon" rel="noopener">2. Devenir testeur</a>
-        <a class="bouton en" href="https://play.google.com/apps/testing/fr.hexagonlogistics.tycoon" rel="noopener">2. Become a tester</a>
-        <p class="fr etape">Étape 3 : une fois testeur, téléchargez le jeu :</p>
-        <p class="en etape">Step 3: once you are a tester, download the game:</p>
-        <a class="bouton fr" href="https://play.google.com/store/apps/details?id=fr.hexagonlogistics.tycoon" rel="noopener">3. Télécharger sur Google Play (phase de test)</a>
-        <a class="bouton en" href="https://play.google.com/store/apps/details?id=fr.hexagonlogistics.tycoon" rel="noopener">3. Download on Google Play (test phase)</a>
-        <div class="gratuit">
-          <h3 class="fr">Est-ce payant ? Non, absolument pas.</h3>
-          <h3 class="en">Is it paid? No, absolutely not.</h3>
-          <p class="fr">Le jeu est configuré en mode test (« sandbox »). Vous pouvez débloquer le jeu entier sans rien payer.</p>
-          <p class="en">The game is set up in test (“sandbox”) mode. You can unlock the whole game without paying anything.</p>
-          <p class="fr"><strong>Que se passe-t-il si vous cliquez sur l'achat ?</strong> Google Play affiche un écran de paiement avec un montant (par exemple 5,99 €) et un mode de paiement de type « Carte test, toujours approuvée ».</p>
-          <p class="en"><strong>What happens if you tap the purchase button?</strong> Google Play shows a payment screen with an amount (for example €5.99) and a payment method like “Test card, always approves”.</p>
-          <p class="fr"><strong>Résultat :</strong> la transaction est totalement fictive. Aucun centime n'est débité de votre compte bancaire, et vous débloquez tout de suite le contenu complet du jeu (niveaux 2 à 5, technologies, trains, bateaux, etc.).</p>
-          <p class="en"><strong>Result:</strong> the transaction is entirely fictitious. Not a cent is taken from your bank account, and you unlock the full content of the game right away (levels 2 to 5, technologies, trains, ships, etc.).</p>
-        </div>
-      </div>
-      <img class="bandeau fr" src="images/bandeau.jpg" alt="Hexagon Logistics Tycoon">
-    </div>
-  </div>
+<div class="w hero">
+ <div><span class="pastille"><span class="fr">Jeu de gestion · Android</span><span class="en">Management game · Android</span></span>
+ <h1><span class="fr">Fais rouler <b class="mot">toute la France.</b></span><span class="en">Keep <b class="mot">all of France</b> moving.</span></h1>
+ <p class="accroche"><span class="fr">Bâtis des chaînes logistiques, fais rouler tes camions, tes trains, tes bateaux et tes avions, et nourris les villes de France. Sans publicité, sans compte.</span><span class="en">Build supply chains, run your trucks, trains, ships and planes, and feed the cities of France. No ads, no account.</span></p>
+ <div class="cta"><a class="btn" href="https://play.google.com/store/apps/details?id=fr.hexagonlogistics.tycoon"><span class="fr">Télécharger sur Google Play</span><span class="en">Download on Google Play</span></a><a class="btn vide" href="#captures"><span class="fr">Voir le jeu</span><span class="en">See the game</span></a></div>
+ <span class="sous"><span class="fr">Phase de test : le jeu complet se débloque gratuitement.</span><span class="en">Test phase: the full game unlocks for free.</span></span></div>
+ <div class="tel"><img src="images/carte.jpg" alt="La carte de France"><img class="petit2" src="images/ville.jpg" alt="Une ville"></div>
+</div>
+<div class="w"><div class="bande"><div><b>149</b><span class="fr">villes</span><span class="en">cities</span></div><div><b>5</b><span class="fr">niveaux de ville</span><span class="en">city levels</span></div><div><b>92</b><span class="fr">types de bâtiments</span><span class="en">building types</span></div><div><b>23</b><span class="fr">véhicules</span><span class="en">vehicles</span></div><div><b>88</b><span class="fr">technologies</span><span class="en">technologies</span></div><div><b>90</b><span class="fr">biens à produire</span><span class="en">goods to produce</span></div></div></div>
 
-  <section id="communaute">
-    <div class="centre">
-      <h2 class="fr">Rejoignez la communauté</h2>
-      <h2 class="en">Join the community</h2>
-      <p class="intro-reseaux fr">Posez vos questions, donnez votre avis et suivez les nouveautés du jeu.</p>
-      <p class="intro-reseaux en">Ask questions, share your feedback and follow the game's news.</p>
-      <div class="liens">
-        <a class="principal" href="https://discord.gg/Sd9yrNzEk" rel="noopener">Discord</a>
-        <a href="https://www.facebook.com/share/19oHjNwFPr/" rel="noopener">Facebook</a>
-        <a href="https://vibetoplist.com/listing/hexagon-logistics-tycoon" rel="noopener">Vibe Top List</a>
-      </div>
-    </div>
-  </section>
+<section id="jeu"><div class="w"><h2><span class="fr">Un jeu de logistique sur la vraie carte de France</span><span class="en">A logistics game on the real map of France</span></h2><p class="intro"><span class="fr">Les villes ont faim, soif et besoin de tout : pain, meubles, fruits et légumes, puis matériaux, boissons, vêtements, électronique, médicaments et batteries. À toi d'organiser la production et les livraisons.</span><span class="en">Cities are hungry, thirsty and need everything: bread, furniture, fruit and vegetables, then building materials, drinks, clothes, electronics, medicines and batteries. It's up to you to organise production and deliveries.</span></p>
+<div class="grille"><div class="carte"><div class="ic">🏭</div><h3><span class="fr">Construis tes chaînes</span><span class="en">Build your chains</span></h3><p><span class="fr">Fermes, moulins, boulangeries, scieries, usines, mines, entrepôts : chaque bâtiment a sa cadence et ses besoins. Le maillon le plus faible limite toute la chaîne.</span><span class="en">Farms, mills, bakeries, sawmills, factories, mines, warehouses: each building has its own pace and needs. The slowest link limits the whole chain.</span></p></div><div class="carte"><div class="ic">🚚</div><h3><span class="fr">Fais rouler tes véhicules</span><span class="en">Keep your vehicles moving</span></h3><p><span class="fr">Tes camions chargent, roulent sur les vraies routes, livrent et reviennent seuls. Plus tard : trains, bateaux et avions.</span><span class="en">Your trucks load, drive on real roads, deliver and come back on their own. Later: trains, ships and planes.</span></p></div><div class="carte"><div class="ic">🏙️</div><h3><span class="fr">Fais grandir les villes</span><span class="en">Make cities grow</span></h3><p><span class="fr">Une ville dont la demande est couverte monte de niveau, et ses demandes se diversifient. Tu choisis librement quoi produire.</span><span class="en">A city whose demand is met moves up a level, and its demands diversify. You freely choose what to produce.</span></p></div><div class="carte"><div class="ic">🌙</div><h3><span class="fr">Un jeu qui continue sans toi</span><span class="en">A game that carries on without you</span></h3><p><span class="fr">Pendant ton absence, la simulation continue (jusqu'à 48 h de jeu). Tu peux aussi accélérer le temps.</span><span class="en">While you are away, the simulation carries on (up to 48 hours of game time). You can also speed time up.</span></p></div><div class="carte"><div class="ic">🔬</div><h3><span class="fr">Recherche et partenaires</span><span class="en">Research and partners</span></h3><p><span class="fr">Des technologies à débloquer, des objectifs, et des partenaires qui développent une ville pour toi.</span><span class="en">Technologies to unlock, goals to reach, and partners who develop a city for you.</span></p></div><div class="carte"><div class="ic">🎓</div><h3><span class="fr">Un tutoriel pour démarrer</span><span class="en">A tutorial to get started</span></h3><p><span class="fr">Une première chaîne de pain, pas à pas, puis ta vraie partie démarre de zéro. Disponible en français, anglais et allemand.</span><span class="en">A first bread chain, step by step, then your real game starts from scratch. Available in French, English and German.</span></p></div></div></div></section>
 
-  <section id="nouveautes">
-    <div class="centre">
-      <h2 class="fr">Les nouveautés de la mise à jour</h2><h2 class="en">What's new in the update</h2>
-      <p class="intro fr">Version 1.1.1, publiée le 19 novembre 2026.</p>
-      <p class="intro en">Version 1.1.1, released on 19 November 2026.</p>
-      <div class="carte">
-        <p class="fr">Les chauffeurs routiers font maintenant une pause de 45 minutes, comme la règle européenne. Les montagnes sont mieux délimitées dans toute la France. Un camion qui descend d’une montagne enneigée n’est plus bloqué à tort en plaine, et l’heure d’arrivée affichée tient compte des blocages. Les vols ont une distance minimale de 100 km. L’interface a été retravaillée : paramètres et annonces dans la rangée du bas, liste d’achat des camions refaite, tutoriel avec un bouton « Précédent ». L’achat de la version complète est plus fiable, et de nombreuses corrections rendent le jeu plus stable.</p>
-        <p class="en">Truck drivers now take a 45-minute break, like the European rule. Mountains are better delimited across France. A truck coming down from a snowy mountain is no longer wrongly blocked on the plain, and the displayed arrival time now takes blockages into account. Flights have a minimum distance of 100 km. The interface has been reworked: settings and announcements in the bottom row, a redesigned truck shop list, and a “Previous” button in the tutorial. Buying the full version is more reliable, and many fixes make the game more stable.</p>
-      </div>
-    </div>
-  </section>
+<section id="captures"><div class="w"><h2><span class="fr">Le jeu sur téléphone</span><span class="en">The game on a phone</span></h2><p class="intro"><span class="fr">La carte de France, un bâtiment, une ville, un trajet.</span><span class="en">The map of France, a building, a city, a route.</span></p><div class="defile"><figure><img src="images/carte.jpg" alt="La carte de France" loading="lazy"><figcaption><span class="fr">La carte</span><span class="en">The map</span></figcaption></figure><figure><img src="images/batiment.jpg" alt="Un moulin" loading="lazy"><figcaption><span class="fr">Un bâtiment</span><span class="en">A building</span></figcaption></figure><figure><img src="images/ville.jpg" alt="Une ville" loading="lazy"><figcaption><span class="fr">Une ville</span><span class="en">A city</span></figcaption></figure><figure><img src="images/trajet.jpg" alt="Un trajet" loading="lazy"><figcaption><span class="fr">Un trajet</span><span class="en">A route</span></figcaption></figure></div></div></section>
 
-  <section id="jeu">
-    <div class="centre">
-      <h2 class="fr">Un jeu de logistique sur la vraie carte de France</h2>
-      <h2 class="en">A logistics game on the real map of France</h2>
-      <p class="intro fr">Les villes ont faim, soif et besoin de tout : pain, meubles, fruits et légumes, puis matériaux, boissons, vêtements, électronique, médicaments et batteries. À toi d'organiser la production et les livraisons.</p>
-      <p class="intro en">Cities are hungry, thirsty and need everything: bread, furniture, fruit and vegetables, then building materials, drinks, clothes, electronics, medicines and batteries. It's up to you to organise production and deliveries.</p>
-      <div class="grille">
-        <div class="carte">
-          <h3 class="fr">Construis tes chaînes</h3><h3 class="en">Build your chains</h3>
-          <p class="fr">Fermes, moulins, boulangeries, scieries, usines, mines, entrepôts : chaque bâtiment a sa cadence et ses besoins. Le maillon le plus lent limite toute la chaîne.</p>
-          <p class="en">Farms, mills, bakeries, sawmills, factories, mines, warehouses: each building has its own pace and needs. The slowest link limits the whole chain.</p>
-        </div>
-        <div class="carte">
-          <h3 class="fr">Fais rouler tes véhicules</h3><h3 class="en">Keep your vehicles moving</h3>
-          <p class="fr">Tes camions chargent, roulent sur les vraies routes, livrent et reviennent seuls. Plus tard : trains, bateaux et avions.</p>
-          <p class="en">Your trucks load, drive on real roads, deliver and come back on their own. Later: trains, ships and planes.</p>
-        </div>
-        <div class="carte">
-          <h3 class="fr">Fais grandir les villes</h3><h3 class="en">Make cities grow</h3>
-          <p class="fr">Une ville dont la demande est couverte monte de niveau, et ses demandes se diversifient. Tu choisis librement quoi produire.</p>
-          <p class="en">A city whose demand is met moves up a level, and its demands diversify. You freely choose what to produce.</p>
-        </div>
-        <div class="carte">
-          <h3 class="fr">Un jeu qui continue sans toi</h3><h3 class="en">A game that carries on without you</h3>
-          <p class="fr">Pendant ton absence, la simulation continue (jusqu'à 48 h de jeu). Tu peux aussi accélérer le temps.</p>
-          <p class="en">While you are away, the simulation carries on (up to 48 hours of game time). You can also speed time up.</p>
-        </div>
-        <div class="carte">
-          <h3 class="fr">Recherche et partenaires</h3><h3 class="en">Research and partners</h3>
-          <p class="fr">Des technologies à débloquer, des objectifs, et des partenaires qui développent une ville pour toi.</p>
-          <p class="en">Technologies to unlock, goals to reach, and partners who develop a city for you.</p>
-        </div>
-        <div class="carte">
-          <h3 class="fr">Un tutoriel pour démarrer</h3><h3 class="en">A tutorial to get started</h3>
-          <p class="fr">Une première chaîne de pain, pas à pas, puis ta vraie partie démarre de zéro. Disponible en français, anglais et allemand.</p>
-          <p class="en">A first bread chain, step by step, then your real game starts from scratch. Available in French, English and German.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<section id="nouveautes"><div class="w"><h2><span class="fr">Les nouveautés de la mise à jour</span><span class="en">What's new in the update</span></h2><div class="nouv"><div class="v">1.1.1<small><span class="fr">19 novembre 2026</span><span class="en">19 November 2026</span></small></div>
+<p><span class="fr">Les chauffeurs routiers font maintenant une pause de 45 minutes, comme la règle européenne. Les montagnes sont mieux délimitées dans toute la France. Un camion qui descend d’une montagne enneigée n’est plus bloqué à tort en plaine, et l’heure d’arrivée affichée tient compte des blocages. Les vols ont une distance minimale de 100 km. L’interface a été retravaillée : paramètres et annonces dans la rangée du bas, liste d’achat des camions refaite, tutoriel avec un bouton « Précédent ». L’achat de la version complète est plus fiable, et de nombreuses corrections rendent le jeu plus stable.</span><span class="en">Truck drivers now take a 45-minute break, like the European rule. Mountains are better delimited across France. A truck coming down from a snowy mountain is no longer wrongly blocked on the plain, and the displayed arrival time now takes blockages into account. Flights have a minimum distance of 100 km. The interface has been reworked: settings and announcements in the bottom row, a redesigned truck shop list, and a “Previous” button in the tutorial. Buying the full version is more reliable, and many fixes make the game more stable.</span></p></div></div></section>
 
-  <section style="padding-top:0">
-    <div class="centre">
-      <div class="chiffres">
-        <div><b>149</b><span class="fr">villes</span><span class="en">cities</span></div>
-        <div><b>5</b><span class="fr">niveaux de ville</span><span class="en">city levels</span></div>
-        <div><b>92</b><span class="fr">types de bâtiments</span><span class="en">building types</span></div>
-        <div><b>23</b><span class="fr">véhicules</span><span class="en">vehicles</span></div>
-        <div><b>88</b><span class="fr">technologies</span><span class="en">technologies</span></div>
-        <div><b>90</b><span class="fr">biens à produire</span><span class="en">goods to produce</span></div>
-      </div>
-    </div>
-  </section>
+<section id="video"><div class="w"><h2><span class="fr">La vidéo de présentation</span><span class="en">The presentation video</span></h2><p class="intro"><span class="fr">Le jeu en images. La vidéo est en anglais.</span><span class="en">The game in pictures.</span></p>
+<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/IGUIXHTf6eQ" title="Hexagon Logistics Tycoon" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+<p class="lien-video"><a href="https://www.youtube.com/shorts/IGUIXHTf6eQ"><span class="fr">Voir sur YouTube</span><span class="en">Watch on YouTube</span></a></p></div></section>
 
-  <section id="video">
-    <div class="centre">
-      <h2 class="fr">La vidéo de présentation</h2><h2 class="en">The presentation video</h2>
-      <p class="intro fr">Le jeu en images. La vidéo est en anglais.</p>
-      <p class="intro en">The game in pictures.</p>
-      <div class="video">
-        <iframe src="https://www.youtube-nocookie.com/embed/IGUIXHTf6eQ" title="Hexagon Logistics Tycoon" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <p class="lien-video"><a href="https://www.youtube.com/shorts/IGUIXHTf6eQ"><span class="fr">Voir sur YouTube</span><span class="en">Watch on YouTube</span></a></p>
-    </div>
-  </section>
+<section id="jouer"><div class="w"><h2><span class="fr">Nous cherchons des testeurs sur Android !</span><span class="en">We are looking for Android testers!</span></h2><p class="intro"><span class="fr">Le jeu est en phase de test sur Google Play. Pour valider la sortie, Google demande un test de 14 jours avec au moins 12 testeurs. Il vous faut un téléphone Android et une adresse Gmail : suivez les trois étapes ci-dessous, vous avez accès au test et au jeu complet gratuitement.</span><span class="en">The game is in its test phase on Google Play. To approve the release, Google requires a 14-day test with at least 12 testers. You need an Android phone and a Gmail address: follow the three steps below: you get access to the test and the full game for free.</span></p>
+<div class="etapes">
+<div class="etape"><h3><span class="fr">Rejoignez le groupe de testeurs</span><span class="en">Join the testers group</span></h3><p><span class="fr">Avec votre adresse Gmail. Elle est ajoutée à la main à la liste des testeurs, une fois par jour, après 19 h (heure de France).</span><span class="en">With your Gmail address. It is added by hand to the testers list, once a day, after 7 pm (French time).</span></p><a class="btn petit" href="https://groups.google.com/g/hexagon-logistics-tycoon" rel="noopener"><span class="fr">1. Rejoindre le groupe</span><span class="en">1. Join the group</span></a></div>
+<div class="etape"><h3><span class="fr">Devenez testeur</span><span class="en">Become a tester</span></h3><p><span class="fr">Après 19 h (heure de France), ouvrez ce lien sur votre téléphone Android, avec la même adresse, et appuyez sur « Devenir testeur ». Avant, il affiche « App not available » : c'est normal.</span><span class="en">After 7 pm (French time), open this link on your Android phone, with the same address, and tap “Become a tester”. Before that, it shows “App not available”: this is normal.</span></p><a class="btn petit" href="https://play.google.com/apps/testing/fr.hexagonlogistics.tycoon" rel="noopener"><span class="fr">2. Devenir testeur</span><span class="en">2. Become a tester</span></a></div>
+<div class="etape"><h3><span class="fr">Téléchargez le jeu</span><span class="en">Download the game</span></h3><p><span class="fr">Une fois testeur, installez le jeu depuis Google Play (phase de test).</span><span class="en">Once you are a tester, install the game from Google Play (test phase).</span></p><a class="btn petit" href="https://play.google.com/store/apps/details?id=fr.hexagonlogistics.tycoon" rel="noopener"><span class="fr">3. Télécharger</span><span class="en">3. Download</span></a></div></div>
+<div class="gratuit"><h3><span class="fr">Est-ce payant ? Non, absolument pas.</span><span class="en">Is it paid? No, absolutely not.</span></h3>
+<p><span class="fr">Le jeu est configuré en mode test (« sandbox »). Vous pouvez débloquer le jeu entier sans rien payer.</span><span class="en">The game is set up in test (“sandbox”) mode. You can unlock the whole game without paying anything.</span></p>
+<p><span class="fr"><strong>Que se passe-t-il si vous cliquez sur l'achat ?</strong> Google Play affiche un écran de paiement avec un montant (par exemple 5,99 €) et un mode de paiement de type « Carte test, toujours approuvée ».</span><span class="en"><strong>What happens if you tap the purchase button?</strong> Google Play shows a payment screen with an amount (for example €5.99) and a payment method like “Test card, always approves”.</span></p>
+<p><span class="fr"><strong>Résultat :</strong> la transaction est totalement fictive. Aucun centime n'est débité de votre compte bancaire, et vous débloquez tout de suite le contenu complet du jeu (niveaux 2 à 5, technologies, trains, bateaux, etc.).</span><span class="en"><strong>Result:</strong> the transaction is entirely fictitious. Not a cent is taken from your bank account, and you unlock the full content of the game right away (levels 2 to 5, technologies, trains, ships, etc.).</span></p></div></div></section>
 
-  <section id="captures">
-    <div class="centre">
-      <h2 class="fr">Captures d'écran</h2><h2 class="en">Screenshots</h2>
-      <p class="intro fr">Le jeu sur téléphone : la carte de France, un bâtiment, une ville, un trajet.</p>
-      <p class="intro en">The game on a phone: the map of France, a building, a city, a route.</p>
-      <div class="captures">
-        <figure><img src="images/carte.jpg" alt="La carte de France" loading="lazy"><figcaption class="fr">La carte</figcaption><figcaption class="en">The map</figcaption></figure>
-        <figure><img src="images/batiment.jpg" alt="Un moulin" loading="lazy"><figcaption class="fr">Un bâtiment</figcaption><figcaption class="en">A building</figcaption></figure>
-        <figure><img src="images/ville.jpg" alt="Une ville" loading="lazy"><figcaption class="fr">Une ville</figcaption><figcaption class="en">A city</figcaption></figure>
-        <figure><img src="images/trajet.jpg" alt="Un trajet" loading="lazy"><figcaption class="fr">Un trajet</figcaption><figcaption class="en">A route</figcaption></figure>
-      </div>
-    </div>
-  </section>
+<section id="versions"><div class="w"><h2><span class="fr">Version gratuite et version complète</span><span class="en">Free version and full version</span></h2><p class="intro"><span class="fr">La version complète s'achète en une seule fois, sans abonnement.</span><span class="en">The full version is a one-time purchase, with no subscription.</span></p>
+<div class="versions"><div class="carte"><h3><span class="fr">Gratuite</span><span class="en">Free</span></h3>
+<ul class="fr"><li>Le niveau 1 des villes</li><li>Le centre de recherche et ses technologies de départ</li><li>La vitesse ×2</li><li>Les objectifs</li><li>L'option de la mer des Pyrénées</li></ul>
+<ul class="en"><li>City level 1</li><li>The research centre with its starting technologies</li><li>×2 speed</li><li>Goals</li><li>The Pyrenees sea option</li></ul></div>
+<div class="carte"><h3><span class="fr">Complète</span><span class="en">Full</span></h3>
+<ul class="fr"><li>Les niveaux 2 à 5 des villes et toutes les technologies</li><li>Les bâtiments uniques et le budget de l'État</li><li>Les partenaires</li><li>Les trains, les bateaux et les avions</li><li>Les événements aléatoires et les fêtes des villes</li></ul>
+<ul class="en"><li>City levels 2 to 5 and all technologies</li><li>Unique buildings and the State budget</li><li>Partners</li><li>Trains, ships and planes</li><li>Random events and city festivals</li></ul></div></div>
+<p class="prix"><span class="fr">Sans publicité. Sans compte. Sans collecte de données : tes parties restent sur ton téléphone.</span><span class="en">No ads. No account. No data collection: your games stay on your phone.</span></p></div></section>
 
-  <section id="versions">
-    <div class="centre">
-      <h2 class="fr">Version gratuite et version complète</h2><h2 class="en">Free version and full version</h2>
-      <p class="intro fr">La version complète s'achète en une seule fois, sans abonnement.</p>
-      <p class="intro en">The full version is a one-time purchase, with no subscription.</p>
-      <div class="versions">
-        <div class="carte">
-          <h3 class="fr">Gratuite</h3><h3 class="en">Free</h3>
-          <ul class="fr"><li>Le niveau 1 des villes</li><li>Le centre de recherche et ses technologies de départ</li><li>La vitesse ×2</li><li>Les objectifs</li><li>L'option de la mer des Pyrénées</li></ul>
-          <ul class="en"><li>City level 1</li><li>The research centre with its starting technologies</li><li>×2 speed</li><li>Goals</li><li>The Pyrenees sea option</li></ul>
-        </div>
-        <div class="carte">
-          <h3 class="fr">Complète</h3><h3 class="en">Full</h3>
-          <ul class="fr"><li>Les niveaux 2 à 5 des villes et toutes les technologies</li><li>Les bâtiments uniques et le budget de l'État</li><li>Les partenaires</li><li>Les trains, les bateaux et les avions</li><li>Les événements aléatoires et les fêtes des villes</li></ul>
-          <ul class="en"><li>City levels 2 to 5 and all technologies</li><li>Unique buildings and the State budget</li><li>Partners</li><li>Trains, ships and planes</li><li>Random events and city festivals</li></ul>
-        </div>
-      </div>
-      <p class="prix fr">Sans publicité. Sans compte. Sans collecte de données : tes parties restent sur ton téléphone.</p>
-      <p class="prix en">No ads. No account. No data collection: your games stay on your phone.</p>
-    </div>
-  </section>
+<section id="communaute"><div class="w"><h2><span class="fr">Rejoignez la communauté</span><span class="en">Join the community</span></h2><p class="intro"><span class="fr">Posez vos questions, donnez votre avis et suivez les nouveautés du jeu.</span><span class="en">Ask questions, share your feedback and follow the game's news.</span></p><div class="comm"><a class="btn" href="https://discord.gg/Sd9yrNzEk" rel="noopener">Discord</a><a class="btn vide" href="https://www.facebook.com/share/19oHjNwFPr/" rel="noopener">Facebook</a><a class="btn vide" href="https://vibetoplist.com/listing/hexagon-logistics-tycoon" rel="noopener">Vibe Top List</a></div></div></section>
 
-  <section>
-    <div class="centre credits">
-      <h2 class="fr">Crédits</h2><h2 class="en">Credits</h2>
-      <p class="fr">La carte est dessinée par le jeu à partir de données © les contributeurs d'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (licence ODbL) et de l'INSEE. Les données dérivées utilisées par le jeu sont <a href="https://github.com/jerome1673/donnees-osm-odbl">publiées ici</a> sous licence ODbL.</p>
-      <p class="en">The map is drawn by the game from data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors (ODbL licence) and INSEE. The derived data used by the game is <a href="https://github.com/jerome1673/donnees-osm-odbl">published here</a> under the ODbL licence.</p>
-    </div>
-  </section>
+<section><div class="w credits"><h2><span class="fr">Crédits</span><span class="en">Credits</span></h2>
+<p class="fr">La carte est dessinée par le jeu à partir de données © les contributeurs d'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (licence ODbL) et de l'INSEE. Les données dérivées utilisées par le jeu sont <a href="https://github.com/jerome1673/donnees-osm-odbl">publiées ici</a> sous licence ODbL.</p>
+<p class="en">The map is drawn by the game from data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors (ODbL licence) and INSEE. The derived data used by the game is <a href="https://github.com/jerome1673/donnees-osm-odbl">published here</a> under the ODbL licence.</p></div></section>
 </main>
-
-<footer>
-  <div class="centre">
-    <p>
-      <a href="https://jerome1673.github.io/confidentialite-hexagon/"><span class="fr">Politique de confidentialité</span><span class="en">Privacy policy</span></a>
-      <a href="mailto:jdwcreation@outlook.fr">jdwcreation@outlook.fr</a>
-    </p>
-    <p id="visites" hidden><span class="fr">Visites du site : <strong id="nb-visites"></strong></span><span class="en">Site visits: <strong id="nb-visites-en"></strong></span></p>
-    <p>© Hexagon Logistics Tycoon</p>
-  </div>
-</footer>
-
+<footer><div class="w"><p><a href="https://jerome1673.github.io/confidentialite-hexagon/"><span class="fr">Politique de confidentialité</span><span class="en">Privacy policy</span></a> · <a href="mailto:jdwcreation@outlook.fr">jdwcreation@outlook.fr</a></p>
+<p id="visites" hidden><span class="fr">Visites du site : <strong id="nb-visites"></strong></span><span class="en">Site visits: <strong id="nb-visites-en"></strong></span></p>
+<p>© Hexagon Logistics Tycoon</p></div></footer>
 <script>
   (function () {
     var html = document.documentElement, cle = 'hexagon-site-langue';
@@ -319,5 +138,4 @@
   })();
 </script>
 <script data-goatcounter="https://hexagon-logistics.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-</body>
-</html>
+</body></html>
