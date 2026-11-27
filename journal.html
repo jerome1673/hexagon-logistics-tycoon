@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journal de développement · Hexagon Logistics Tycoon</title>
+<meta name="description" content="Le journal de développement de Hexagon Logistics Tycoon : les nouveautés, la banque, l'énergie et la suite.">
+<link rel="icon" href="images/icone.png">
+<style>
+:root{--fond:#061631;--fond2:#0a2a5c;--carte:#0e3a7d;--bord:#2a5ea8;--or:#ffcc00;--texte:#eef3fb;--doux:#b9c9e3}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#133f86 0,transparent 60%),var(--fond);color:var(--texte);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--or)}.w{max-width:1120px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:9;background:rgba(6,22,49,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(42,94,168,.5)}
+header .w{display:flex;align-items:center;gap:12px;min-height:62px}
+header img{width:36px;height:36px;border-radius:10px}header b{font-size:1.05rem}
+header nav{margin-left:auto;display:flex;gap:20px;align-items:center}header nav a{color:var(--doux);text-decoration:none;font-size:.95rem}
+.btn{display:inline-block;background:var(--or);color:#1a1a1a;font-weight:800;padding:13px 26px;border-radius:999px;text-decoration:none;box-shadow:0 8px 24px rgba(255,204,0,.28)}
+.btn.petit{padding:8px 18px;font-size:.92rem}.btn.vide{background:transparent;color:var(--or);border:1.5px solid var(--or);box-shadow:none}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:70px 20px 50px}
+.pastille{display:inline-block;border:1px solid var(--or);color:var(--or);padding:4px 14px;border-radius:999px;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase}
+h1 b{font-weight:inherit}h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.04;margin:16px 0 14px;letter-spacing:-.02em}h1 .mot{color:var(--or)}
+.accroche{font-size:1.2rem;color:var(--doux);max-width:560px}.cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 10px}
+.sous{color:var(--doux);font-size:.92rem}
+.tel{position:relative;justify-self:center;width:min(300px,70vw)}
+.tel:before{content:"";position:absolute;inset:-30px;background:radial-gradient(closest-side,rgba(255,204,0,.28),transparent);filter:blur(10px)}
+.tel img{position:relative;width:100%;border-radius:34px;border:8px solid #0b1a38;box-shadow:0 30px 70px rgba(0,0,0,.6);transform:rotate(3deg)}
+.tel .petit2{position:absolute;width:46%;left:-24%;bottom:-6%;border-radius:24px;border:6px solid #0b1a38;box-shadow:0 20px 50px rgba(0,0,0,.55);transform:rotate(-6deg)}
+.bande{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:10px 0 60px}
+.bande div{background:rgba(10,42,92,.7);border:1px solid var(--bord);border-radius:16px;padding:14px 6px;text-align:center}
+.bande b{display:block;font-size:1.9rem;color:var(--or);line-height:1.1}.bande span{color:var(--doux);font-size:.85rem}
+h2{font-size:clamp(1.6rem,4vw,2.3rem);margin:0 0 10px;letter-spacing:-.01em}.intro{color:var(--doux);max-width:640px;margin:0 0 28px}
+section{padding:46px 0}
+.grille{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+.carte{background:linear-gradient(180deg,rgba(14,58,125,.9),rgba(10,42,92,.9));border:1px solid var(--bord);border-radius:20px;padding:22px}
+.carte .ic{width:44px;height:44px;border-radius:12px;background:rgba(255,204,0,.14);display:grid;place-items:center;font-size:1.4rem;margin-bottom:10px}
+.carte h3{margin:0 0 6px;font-size:1.1rem;color:var(--or)}.carte p{margin:0;font-size:.96rem}
+.defile{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 18px}
+.defile figure{margin:0;flex:0 0 220px;scroll-snap-align:start}.defile img{width:100%;border-radius:26px;border:6px solid #0b1a38;box-shadow:0 14px 36px rgba(0,0,0,.5);display:block}
+.defile figcaption{text-align:center;color:var(--doux);font-size:.9rem;margin-top:8px}
+.etapes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:e}
+.etape{position:relative;background:rgba(255,204,0,.06);border:1px solid rgba(255,204,0,.6);border-radius:20px;padding:26px 20px 20px}
+.etape:before{counter-increment:e;content:counter(e);position:absolute;top:-18px;left:20px;width:38px;height:38px;border-radius:50%;background:var(--or);color:#1a1a1a;font-weight:900;display:grid;place-items:center}
+.etape h3{margin:6px 0 6px;font-size:1.1rem}.etape p{margin:0 0 14px;color:var(--doux);font-size:.95rem}
+.nouv{background:linear-gradient(135deg,#0e3a7d,#0a2a5c);border:1px solid var(--bord);border-radius:24px;padding:30px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start}
+.nouv .v{background:var(--or);color:#1a1a1a;border-radius:18px;padding:14px 18px;text-align:center;font-weight:800}.nouv .v small{display:block;font-weight:600;opacity:.75}
+.nouv p{margin:0;color:var(--texte)}
+.comm{display:flex;gap:12px;flex-wrap:wrap}
+footer{border-top:1px solid rgba(42,94,168,.5);padding:30px 0 44px;color:var(--doux);text-align:center;font-size:.93rem}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding-top:30px}.tel{order:2;width:min(240px,62vw);margin-top:18px}.bande{grid-template-columns:repeat(3,1fr)}.grille,.etapes{grid-template-columns:1fr}.nouv{grid-template-columns:1fr}header nav a:not(.btn){display:none}}
+
+#langue{border:1px solid var(--bord);background:transparent;color:var(--texte);border-radius:999px;padding:6px 14px;font:inherit;font-size:.88rem;cursor:pointer}#langue:hover{border-color:var(--or);color:var(--or)}
+.video{max-width:340px;margin:0 auto;aspect-ratio:9/16;border-radius:26px;overflow:hidden;border:6px solid #0b1a38;background:var(--fond2);box-shadow:0 20px 50px rgba(0,0,0,.55)}.video iframe{width:100%;height:100%;border:0;display:block}
+.lien-video{text-align:center;margin-top:12px;font-size:.93rem;color:var(--doux)}
+.versions{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.versions ul{margin:8px 0 0;padding-left:20px}.versions li{margin:4px 0;font-size:.97rem}
+.prix{color:var(--doux);font-size:.95rem;margin-top:16px}
+.tbloc{margin-top:26px;padding:20px 22px 18px;border:1px solid rgba(255,204,0,.65);border-radius:22px;background:rgba(255,204,0,.07);max-width:560px}
+.tbloc h2{font-size:1.25rem;color:var(--or);margin:0 0 6px}.tbloc .tintro{margin:0 0 14px;color:var(--doux);font-size:.95rem}
+.tp{display:grid;grid-template-columns:32px 1fr;gap:12px;margin:0 0 14px}.tp i{width:32px;height:32px;border-radius:50%;background:var(--or);color:#1a1a1a;font-style:normal;font-weight:900;display:grid;place-items:center}
+.tp p{margin:0 0 8px;color:var(--texte);font-size:.95rem}
+.tbloc .gratuit{margin-top:8px;padding:10px 14px}.tbloc .gratuit summary{cursor:pointer;color:var(--or);font-weight:700;font-size:.98rem}.tbloc .gratuit p{margin:10px 0 0}
+.tbloc .voir{margin:12px 0 0;text-align:center;font-size:.93rem}
+.gratuit{margin-top:22px;padding:18px 22px;border:1px solid rgba(255,204,0,.5);border-radius:18px;background:rgba(255,204,0,.05)}.gratuit h3{margin:0 0 8px;color:var(--or);font-size:1.05rem}.gratuit p{margin:0 0 10px;color:var(--doux);font-size:.96rem}.gratuit p:last-child{margin:0}
+.credits{color:var(--doux);font-size:.93rem}.credits h2{font-size:1.2rem}
+[lang="fr"] .en,[lang="en"] .fr{display:none !important}
+@media(max-width:860px){.versions{grid-template-columns:1fr}}
+.entree{min-width:0;overflow:hidden}.entree .date{color:var(--or);font-weight:700;font-size:.9rem;margin:0 0 4px;letter-spacing:.03em}.entree h3{font-size:1.3rem;color:var(--texte);margin:0 0 8px}.entree p{margin-bottom:10px}.entree .defile{margin-top:12px}.entree .defile figure{flex-basis:200px}
+</style></head><body>
+<header><div class="w"><img src="images/icone.png" alt=""><b>Hexagon Logistics Tycoon</b>
+<nav><a href="index.html#jeu"><span class="fr">Le jeu</span><span class="en">The game</span></a><a href="index.html#captures"><span class="fr">Captures</span><span class="en">Screenshots</span></a><a href="index.html#nouveautes"><span class="fr">Nouveautés</span><span class="en">What's new</span></a><a href="index.html#jouer"><span class="fr">Télécharger</span><span class="en">Download</span></a><a href="index.html#developpement"><span class="fr">En développement</span><span class="en">In development</span></a><button id="langue" type="button" aria-label="Changer de langue / Change language"><span class="fr">English</span><span class="en">Français</span></button></nav></div></header>
+<main><div class="w" style="padding-top:36px;padding-bottom:30px">
+<p><a href="index.html" class="sous"><span class="fr">← Retour à l'accueil</span><span class="en">← Back to home</span></a></p>
+<h1 style="font-size:clamp(2rem,5vw,3rem)"><span class="fr">Journal de <b class="mot">développement</b></span><span class="en">Development <b class="mot">log</b></span></h1>
+<p class="intro"><span class="fr">Les nouveautés du jeu et ce qui arrive ensuite, de la plus récente à la plus ancienne. Les fonctions « en test » ne sont pas encore dans la version Google Play.</span><span class="en">What is new in the game and what is coming next, newest first. Features marked "in testing" are not in the Google Play version yet.</span></p>
+<div style="display:grid;gap:18px;grid-template-columns:minmax(0,1fr)">
+<article class="carte entree"><p class="date"><span class="fr">27 novembre 2026</span><span class="en">November 27, 2026</span></p><h3><span class="fr">Le jeu est disponible sur Google Play !</span><span class="en">The game is now available on Google Play!</span></h3><p><span class="fr">Après plusieurs semaines de test fermé, Hexagon Logistics Tycoon est publié pour tout le monde sur Android. Merci à tous les testeurs : leurs retours ont permis de corriger de nombreux défauts et d'améliorer les partenaires, les messages et l'équilibrage. <a href="https://play.google.com/store/apps/details?id=fr.hexagonlogistics.tycoon" rel="noopener">Télécharger sur Google Play</a>.</span><span class="en">After several weeks of closed testing, Hexagon Logistics Tycoon is now released to everyone on Android. Thank you to all the testers: their feedback fixed many issues and improved partners, messages and balance. <a href="https://play.google.com/store/apps/details?id=fr.hexagonlogistics.tycoon" rel="noopener">Get it on Google Play</a>.</span></p><div class="defile"><figure><img src="images/carte.jpg" alt="La carte de France" loading="lazy"></figure><figure><img src="images/ville.jpg" alt="Une ville" loading="lazy"></figure></div></article>
+<article class="carte entree"><p class="date"><span class="fr">26 novembre 2026</span><span class="en">November 26, 2026</span></p><h3><span class="fr">La banque (en test, mode réaliste)</span><span class="en">The bank (in testing, realistic mode)</span></h3><p><span class="fr">La banque prend forme : tu empruntes un montant sur une durée, et la mensualité est prélevée chaque jour, même quand tu es absent (jusqu'à 48 h). Le plafond d'emprunt suit ton bénéfice récent, la mensualité ne peut pas dépasser 30 % de ce bénéfice, et les intérêts totaux sont plafonnés (50 % du capital pour un nouveau client, 20 % avec une excellente réputation). Chaque prêt remboursé sans retard améliore ta réputation et baisse ton taux. Les taux sont encore en cours de réglage.</span><span class="en">The bank is taking shape: you borrow an amount over a term, and the payment is taken every day, even while you are away (up to 48 hours). The borrowing limit follows your recent profit, the payment cannot exceed 30% of that profit, and total interest is capped (50% of the capital for a new customer, 20% with an excellent reputation). Each loan repaid on time improves your reputation and lowers your rate. Rates are still being tuned.</span></p><div class="defile"><figure><img src="images/dev-banque-emprunt.jpg" alt="Emprunter" loading="lazy"></figure><figure><img src="images/dev-banque-pret.jpg" alt="Un prêt en cours" loading="lazy"></figure></div></article>
+<article class="carte entree"><p class="date"><span class="fr">Novembre 2026</span><span class="en">November 2026</span></p><h3><span class="fr">L'énergie : centrales, lignes, vent et soleil (en test)</span><span class="en">Energy: plants, lines, wind and sun (in testing)</span></h3><p><span class="fr">Les centrales se construisent sur de vrais sites : les barrages, les centrales à gaz et les centrales nucléaires de France, au bon endroit sur la carte. Tu les relies aux villes par des lignes électriques, tu consultes les cartes du vent et du soleil pour placer tes parcs, et les villes consomment plus quand il fait froid et le soir. Les batteries comblent la nuit et le manque de vent.</span><span class="en">Power plants are built on real sites: dams, gas plants and nuclear plants of France, at the right place on the map. You connect them to cities with power lines, check the wind and sun maps to place your farms, and cities use more power when it is cold and in the evening. Batteries cover the night and the lack of wind.</span></p><div class="defile"><figure><img src="images/dev-energie-vent.jpg" alt="Carte du vent" loading="lazy"></figure><figure><img src="images/dev-energie-soleil.jpg" alt="Carte du soleil" loading="lazy"></figure><figure><img src="images/dev-energie-ligne.jpg" alt="Une ligne électrique" loading="lazy"></figure><figure><img src="images/dev-energie-centrale.jpg" alt="Une centrale nucléaire" loading="lazy"></figure><figure><img src="images/dev-ville-niveau5.jpg" alt="Une ville et son électricité" loading="lazy"></figure></div></article>
+</div></div></main>
+<footer><div class="w"><p><a href="https://jerome1673.github.io/confidentialite-hexagon/"><span class="fr">Politique de confidentialité</span><span class="en">Privacy policy</span></a> · <a href="mailto:jdwcreation@outlook.fr">jdwcreation@outlook.fr</a></p>
+<p id="visites" hidden><span class="fr">Visites du site : <strong id="nb-visites"></strong></span><span class="en">Site visits: <strong id="nb-visites-en"></strong></span></p>
+<p>© Hexagon Logistics Tycoon</p></div></footer>
+<script>
+  (function () {
+    var html = document.documentElement, cle = 'hexagon-site-langue';
+    function appliquer(l) { html.setAttribute('lang', l); document.title = (l === 'fr' ? 'Journal de développement' : 'Development log') + ' · Hexagon Logistics Tycoon'; }
+    var choix = null;
+    try { choix = localStorage.getItem(cle); } catch (e) {}
+    if (choix !== 'fr' && choix !== 'en') choix = (navigator.language || 'fr').slice(0, 2) === 'fr' ? 'fr' : 'en';
+    appliquer(choix);
+    document.getElementById('langue').addEventListener('click', function () {
+      var l = html.getAttribute('lang') === 'fr' ? 'en' : 'fr';
+      appliquer(l);
+      try { localStorage.setItem(cle, l); } catch (e) {}
+    });
+  })();
+</script>
+<script>
+  // compteur de visites (GoatCounter) : reste caché si le service ne répond pas
+  (function () {
+    try {
+      fetch('https://hexagon-logistics.goatcounter.com/counter/TOTAL.json').then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+        if (!d || !d.count) return;
+        document.getElementById('nb-visites').textContent = d.count;
+        document.getElementById('nb-visites-en').textContent = d.count;
+        document.getElementById('visites').hidden = false;
+      }).catch(function () {});
+    } catch (e) {}
+  })();
+</script>
+<script data-goatcounter="https://hexagon-logistics.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body></html>
