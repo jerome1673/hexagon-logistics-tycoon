@@ -11,7 +11,7 @@ a{color:var(--or)}.w{max-width:1120px;margin:0 auto;padding:0 20px}
 header{position:sticky;top:0;z-index:9;background:rgba(6,22,49,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(42,94,168,.5)}
 header .w{display:flex;align-items:center;gap:12px;min-height:62px}
 header img{width:36px;height:36px;border-radius:10px}header b{font-size:1.05rem}
-header nav{margin-left:auto;display:flex;gap:20px;align-items:center}header nav a{color:var(--doux);text-decoration:none;font-size:.95rem}
+header nav{margin-left:auto;display:flex;gap:20px;align-items:center}header .liens{display:flex;gap:20px;align-items:center}header nav a{color:var(--doux);text-decoration:none;font-size:.95rem}
 .btn{display:inline-block;background:var(--or);color:#1a1a1a;font-weight:800;padding:13px 26px;border-radius:999px;text-decoration:none;box-shadow:0 8px 24px rgba(255,204,0,.28)}
 .btn.petit{padding:8px 18px;font-size:.92rem}.btn.vide{background:transparent;color:var(--or);border:1.5px solid var(--or);box-shadow:none}
 .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:70px 20px 50px}
@@ -44,7 +44,7 @@ section{padding:46px 0}
 .nouv p{margin:0;color:var(--texte)}
 .comm{display:flex;gap:12px;flex-wrap:wrap}
 footer{border-top:1px solid rgba(42,94,168,.5);padding:30px 0 44px;color:var(--doux);text-align:center;font-size:.93rem}
-@media(max-width:860px){.hero{grid-template-columns:1fr;padding-top:30px}.tel{order:2;width:min(240px,62vw);margin-top:18px}.bande{grid-template-columns:repeat(3,1fr)}.grille,.etapes{grid-template-columns:1fr}.nouv{grid-template-columns:1fr}header nav a:not(.btn){display:none}}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding-top:30px}.tel{order:2;width:min(240px,62vw);margin-top:18px}.bande{grid-template-columns:repeat(3,1fr)}.grille,.etapes{grid-template-columns:1fr}.nouv{grid-template-columns:1fr}header .w{flex-wrap:wrap;row-gap:0;padding-bottom:2px}header nav{display:contents}#langue{margin-left:auto}header .liens{order:3;width:100%;margin:0 -20px;padding:2px 20px 10px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}header .liens::-webkit-scrollbar{display:none}header .liens a{flex:0 0 auto}}
 
 #langue{border:1px solid var(--bord);background:transparent;color:var(--texte);border-radius:999px;padding:6px 14px;font:inherit;font-size:.88rem;cursor:pointer}#langue:hover{border-color:var(--or);color:var(--or)}
 .video{max-width:340px;margin:0 auto;aspect-ratio:9/16;border-radius:26px;overflow:hidden;border:6px solid #0b1a38;background:var(--fond2);box-shadow:0 20px 50px rgba(0,0,0,.55)}.video iframe{width:100%;height:100%;border:0;display:block}
@@ -72,7 +72,7 @@ footer{border-top:1px solid rgba(42,94,168,.5);padding:30px 0 44px;color:var(--d
 @media(max-width:860px){.sim-ctl{grid-template-columns:1fr}.sim-res{grid-template-columns:repeat(2,1fr)}.sim-tab thead{display:none}.sim-tab,.sim-tab tbody,.sim-tab tr,.sim-tab td{display:block;width:100%}.sim-tab tr{background:rgba(10,42,92,.55);border:1px solid var(--bord);border-radius:16px;margin:0 0 12px;padding:6px 4px}.sim-tab td{border:0;padding:6px 12px}.sim-tab td.n{text-align:left}.sim-tab td[data-t]:before{content:attr(data-t) " : ";color:var(--doux);font-size:.82rem}}
 </style></head><body>
 <header><div class="w"><img src="images/icone.png" alt=""><b>Hexagon Logistics Tycoon</b>
-<nav><a href="index.html#jeu"><span class="fr">Le jeu</span><span class="en">The game</span></a><a href="index.html#captures"><span class="fr">Captures</span><span class="en">Screenshots</span></a><a href="index.html#nouveautes"><span class="fr">Nouveautés</span><span class="en">What's new</span></a><a href="index.html#jouer"><span class="fr">Télécharger</span><span class="en">Download</span></a><a href="index.html#developpement"><span class="fr">En développement</span><span class="en">In development</span></a><a href="simulateur.html"><span class="fr">Simulateur</span><span class="en">Simulator</span></a><button id="langue" type="button" aria-label="Changer de langue / Change language"><span class="fr">English</span><span class="en">Français</span></button></nav></div></header>
+<nav><div class="liens"><a href="index.html#jeu"><span class="fr">Le jeu</span><span class="en">The game</span></a><a href="index.html#captures"><span class="fr">Captures</span><span class="en">Screenshots</span></a><a href="index.html#nouveautes"><span class="fr">Nouveautés</span><span class="en">What's new</span></a><a href="index.html#jouer"><span class="fr">Télécharger</span><span class="en">Download</span></a><a href="index.html#developpement"><span class="fr">En développement</span><span class="en">In development</span></a><a href="simulateur.html"><span class="fr">Simulateur</span><span class="en">Simulator</span></a></div><button id="langue" type="button" aria-label="Changer de langue / Change language"><span class="fr">English</span><span class="en">Français</span></button></nav></div></header>
 <main><div class="w" style="padding-top:36px;padding-bottom:30px">
 <p><a href="index.html" class="sous"><span class="fr">← Retour à l'accueil</span><span class="en">← Back to home</span></a></p>
 <h1 style="font-size:clamp(2rem,5vw,3rem)"><span class="fr">Simulateur de <b class="mot">chaînes</b></span><span class="en">Chain <b class="mot">simulator</b></span></h1>
